@@ -1,4 +1,4 @@
-package model;
+package com.barquero.inventory.model;
 
 public class Product {
 	private int id;
