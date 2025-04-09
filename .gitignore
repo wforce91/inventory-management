@@ -1,0 +1,65 @@
+# ======================
+# Java & Maven Projects
+# ======================
+
+# Compiled class files
+*.class
+
+# Log files
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# Virtual machine crash logs
+hs_err_pid*
+
+# ======================
+# Maven
+# ======================
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/timing.properties
+
+# ======================
+# Eclipse / STS / IntelliJ
+# ======================
+.project
+.classpath
+.settings/
+.springBeans
+.sts4-cache/
+
+# ======================
+# OS-specific
+# ======================
+.DS_Store         # macOS
+Thumbs.db         # Windows
+
+# ======================
+# IDE-specific
+# ======================
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# ======================
+# STS / Eclipse server config
+# ======================
+/Servers/
+
+# ======================
+# Others
+# ======================
+*.swp        # vim swap files
+*.bak        # backup files
+*.tmp        # temporary files
