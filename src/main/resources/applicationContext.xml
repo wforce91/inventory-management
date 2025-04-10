@@ -19,6 +19,22 @@
         <property name="user" value="sa"/>
         <property name="password" value=""/>
     </bean>
+    
+    <bean class="org.springframework.jdbc.datasource.init.DataSourceInitializer">
+    	<property name="dataSource" ref="dataSource"/>
+    	<property name="databasePopulator">
+        	<bean class="org.springframework.jdbc.datasource.init.ResourceDatabasePopulator">
+            	<property name="scripts">
+                	<list>
+                    	<value>classpath:schema.sql</value>
+                	</list>
+            	</property>
+        	</bean>
+    	</property>
+    	<property name="continueOnError" value="false"/>
+    	<property name="ignoreFailedDrops" value="true"/>
+	</bean>
+
 
     <!-- JdbcTemplate -->
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">

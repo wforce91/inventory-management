@@ -1,0 +1,50 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context 
+           http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/tx 
+           http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!-- Scan for @Repository, @Service, @Component -->
+    <context:component-scan base-package="com.barquero.inventory" />
+
+    <!-- DataSource for H2 (in-memory) -->
+    <bean id="dataSource" class="org.h2.jdbcx.JdbcDataSource">
+        <property name="URL" value="jdbc:h2:mem:inventory;DB_CLOSE_DELAY=-1"/>
+        <property name="user" value="sa"/>
+        <property name="password" value=""/>
+    </bean>
+    
+    <bean class="org.springframework.jdbc.datasource.init.DataSourceInitializer">
+    	<property name="dataSource" ref="dataSource"/>
+    	<property name="databasePopulator">
+        	<bean class="org.springframework.jdbc.datasource.init.ResourceDatabasePopulator">
+            	<property name="scripts">
+                	<list>
+                    	<value>classpath:schema.sql</value>
+                	</list>
+            	</property>
+        	</bean>
+    	</property>
+    	<property name="continueOnError" value="false"/>
+    	<property name="ignoreFailedDrops" value="true"/>
+	</bean>
+
+
+    <!-- JdbcTemplate -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- Transaction Management (optional, good practice) -->
+    <tx:annotation-driven />
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+</beans>
