@@ -54,6 +54,19 @@ async function loadProducts() {
   products.forEach(p => {
     const item = document.createElement('li');
     item.textContent = `ID: ${p.id} | ${p.name} - ${p.quantity}`;
+
+    // Add delete button
+    const delBtn = document.createElement('button');
+    delBtn.textContent = 'Delete';
+    delBtn.className = 'delete-btn';
+    delBtn.onclick = async () => {
+      await fetch(`/inventory-management/api/products/${p.id}`, {
+        method: 'DELETE'
+      });
+      loadProducts();
+    };
+
+    item.appendChild(delBtn);
     list.appendChild(item);
   });
 }

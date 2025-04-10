@@ -13,3 +13,9 @@ form input, form button {
   gap: 10px;
   max-width: 300px
   }
+  
+  .delete-btn {
+  margin-left: 10px;
+  color: red;
+  cursor: pointer;
+}
