@@ -6,3 +6,10 @@ body {
 form input, form button {
   margin: 0.5em;
 }
+
+#productForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 300px
+  }

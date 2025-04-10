@@ -39,4 +39,11 @@ public class ProductDAOImpl implements ProductDAO{
         jdbcTemplate.update(sql, id);
 	}
 
+	@Override
+	public boolean updateProduct(Product product) {
+	    String sql = "UPDATE products SET name = ?, quantity = ? WHERE id = ?";
+	    int rows = jdbcTemplate.update(sql, product.getName(), product.getQuantity(), product.getId());
+	    return rows > 0;
+	}
+
 }
